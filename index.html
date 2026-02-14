@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tonight | Virtual Connection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-obsidian: #020617;
+            --color-rose: #e11d48;
+            --color-cream: #f8fafc;
+            --haze-blur: 0px;
+            --haze-hue: 0deg;
+            --bg-speed: 30s;
+        }
+        body {
+            background-color: var(--color-obsidian);
+            color: var(--color-cream);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-font-smoothing: antialiased;
+            transition: filter 1s ease;
+        }
+        .haze-active {
+            filter: blur(var(--haze-blur)) hue-rotate(var(--haze-hue));
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: #020617;
+            overflow: hidden;
+        }
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+        .blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.3;
+            animation: float var(--bg-speed) infinite ease-in-out;
+            will-change: transform;
+        }
+        .blob-1 {
+            top: -20%;
+            left: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: #4c0519; 
+            animation-delay: 0s;
+        }
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 80vw;
+            height: 80vw;
+            background: #1e1b4b;
+            animation-delay: -7s;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            33% { transform: translate(5vw, -10vh) rotate(5deg) scale(1.1); }
+            66% { transform: translate(-5vw, 5vh) rotate(-5deg) scale(0.9); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        }
+        ::-webkit-scrollbar { width: 0px; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            950: '#020617',
+                            900: '#0f172a',
+                        },
+                        rose: {
+                            600: '#e11d48',
+                            500: '#f43f5e',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <div class="mesh-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    <div class="noise"></div>
+</body>
+</html>
